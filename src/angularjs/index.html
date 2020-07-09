@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HeiMAP</title>
+
+    <link rel="shortcut icon" ng-href="{{ ::global.imagePath + '/favicon.ico' }}" type="image/x-icon">
+    <link rel="icon" ng-href="{{ ::global.imagePath + '/favicon.ico' }}" type="image/x-icon">
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <!--All the injects are generated and inserted authomatically using a gulp task. When the production parameter is passed, the files are minified
+    -->
+
+    <!-- inject:all:css -->
+<link rel="stylesheet" href="/webapp/build/application.css?version=2yiayje7d36r9df">
+<!-- end:inject:all:css -->
+
+    <!--Family Font usada no projeto -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <!-- Material Icons (Referência: https://design.google.com/icons/ )-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--[if lte IE 10]>
+      <script type="text/javascript">document.location.href = 'app/shared/unsupported-browser.html'</script>
+    <![endif]-->
+  </head>
+  <body ng-controller="AppController as appCtrl" layout="column">
+    <c2-spinner></c2-spinner>
+    <ui-view/>
+
+    <!-- inject:vendors:script  -->
+<script src="/webapp/build/vendors.js?version=2yiayje7d36r9df"></script>
+<script src="/webapp/build/angular-with-plugins.js?version=2yiayje7d36r9df"></script>
+<!-- end:inject:vendors:script  -->
+
+    <!-- inject:application:script -->
+    <script src="/webapp/build/application.js?version=brm29myq8g9ztr7"></script>
+    <!-- end:inject:application:script  -->
+  </body>
+</html>

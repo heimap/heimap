@@ -1,0 +1,26 @@
+<md-dialog flex=100 flex-gt-md=40 aria-label="{{ctrl.viewTitle}}" class="md-dialog-transparent">
+  <content-body flex>
+      <box box-title="{{ctrl.viewTitle}}" flex>
+          <md-input-container class="md-block" flex>
+              <input required type="text" placeholder="{{ ::'attributes.title' | translate}}" ng-model="ctrl.resource.title">
+          </md-input-container>
+          <md-input-container class="md-block" flex>
+              <input required type="text" placeholder="{{ ::'attributes.description' | translate}}" ng-model="ctrl.resource.description">
+          </md-input-container>
+          <box-footer-buttons>
+              <div layout="row">
+                  <div>
+                      <md-button  ng-if="!ctrl.saving" class="md-primary md-raised" ng-click="ctrl.save()">
+                          {{::'views.actions.save' | translate}}
+                      </md-button>
+                      <!-- <md-progress-circular md-diameter="35" ng-if="ctrl.saving" md-mode="indeterminate"></md-progress-circular> -->
+                  </div>
+                  <div>
+                      <md-button class="md-warn" ng-click="ctrl.close()">{{::'views.actions.getOut' | translate}}</md-button>
+                  </div>
+              </div>
+          </box-footer-buttons>
+      </box>
+
+  </content-body>
+</md-dialog>

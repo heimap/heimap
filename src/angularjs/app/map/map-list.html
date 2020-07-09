@@ -1,0 +1,109 @@
+<box box-title="{{ ::'views.titles.mapList' | translate}}">
+  <box-toolbar-buttons>
+    <md-button class="md-icon-button" ng-click="mapCtrl.switchToView('form')">
+      <md-icon md-font-set="material-icons" class="md-warn">map</md-icon>
+      <md-tooltip md-direction="bottom" hide-sm hide-xs>{{ ::'views.actions.view' | translate}}</md-tooltip>
+    </md-button>
+  </box-toolbar-buttons>
+
+  <md-content layout-padding md-whiteframe="1" class="bottom-4">
+    <form class="condensed" ng-submit="mapCtrl.search(vm.paginator.currentPage)">
+      <div layout="row">
+        <md-input-container flex=40 flex-xs=40 class="top-0">
+          <label>{{ ::'attributes.title' | translate}}</label>
+          <input type="text" ng-model="mapCtrl.queryFilters.title">
+        </md-input-container>
+        <md-input-container flex=30 flex-xs=30 class="top-0">
+          <label>{{ ::'attributes.mapType' | translate}}</label>
+          <md-select ng-model="mapCtrl.queryFilters.mapType">
+            <md-option>
+              <em style="font-style: normal;">{{::'global.all' | translate}}</em>
+            </md-option>
+            <md-option ng-repeat="type in mapCtrl.mapTypes" ng-value="type">
+              {{type.name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container flex=10 flex-xs=20 class="top-0">
+          <label>{{ ::'attributes.georeferenced' | translate}}</label>
+          <md-select ng-model="mapCtrl.queryFilters.georeferenced">
+            <md-option>
+              <em style="font-style: normal;">{{::'global.all' | translate}}</em>
+            </md-option>
+            <md-option ng-value="true">
+              {{ ::'global.yes' | translate}}
+            </md-option>
+            <md-option ng-value="false">
+              {{ ::'global.no' | translate}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container flex=10 flex-xs=20 class="top-0">
+            <label>{{ ::'attributes.verified' | translate}}</label>
+            <md-select ng-model="mapCtrl.queryFilters.verified">
+              <md-option>
+                <em style="font-style: normal;">{{::'global.all' | translate}}</em>
+              </md-option>
+              <md-option ng-value="true">
+                {{ ::'global.yes' | translate}}
+              </md-option>
+              <md-option ng-value="false">
+                {{ ::'global.no' | translate}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        <md-button id="btn-usersCtrl-filter" class="md-raised md-primary md-mini" type="submit">
+          {{::'views.actions.filter' | translate}}
+        </md-button>
+        <md-button id="btn-usersCtrl-reset" class="md-raised md-primary md-mini" ng-click="mapCtrl.reset()">
+            {{::'views.actions.reset' | translate}}
+          </md-button>
+      </div>
+    </form>
+  </md-content>
+
+  <md-content>
+    <ng-include class="card-box" src="global.clientPath + '/map/add-map-card.html'"></ng-include>
+    <md-card class="card-box" ng-repeat="resource in mapCtrl.resources">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">{{ resource.title | limitTo: 30 }}{{resource.title.length > 30 ? '...' : ''}}
+              <md-tooltip>{{resource.title}}</md-tooltip>
+          </span>
+          <span class="md-subhead">{{resource.mapTypeName}}</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content layout="row">
+        <div class="md-media-xl card-media" ng-style="{'background-image': 'url(' +resource.mapImageFile.thumb + ')' }"></div>
+        <md-card-actions layout="column">
+          <md-button class="md-icon-button" aria-label="{{ ::'attributes.georeferenced' | translate}}">
+            <md-tooltip>{{ resource.georeferenced | isOrNotGeoreferenced}}</md-tooltip>
+            <md-icon ng-class="{'md-primary': resource.georeferenced===true}">place</md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="{{ ::'attributes.mapOptions' | translate}}">
+            <md-tooltip>{{ ::'attributes.mapOptions' | translate}}</md-tooltip>
+            <md-icon class="">menu</md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="{{ ::'views.actions.toggleFavorite' | translate}}">
+            <md-tooltip>{{ ::'views.actions.toggleFavorite' | translate}}</md-tooltip>
+            <md-icon class="">favorite</md-icon>
+          </md-button>
+
+          <md-button class="md-icon-button" aria-label="{{ ::'views.actions.toggleVerified' | translate}}">
+            <md-tooltip>{{ ::'views.actions.toggleVerified' | translate}}</md-tooltip>
+            <md-icon ng-class="{'md-primary': resource.verified===true}">verified_user</md-icon>
+          </md-button>
+
+        </md-card-actions>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-click="mapCtrl.remove(resource)">{{::'views.actions.remove' | translate}}</md-button>
+        <md-button ng-click="mapCtrl.openEditMap(resource)">{{::'views.actions.edit' | translate}}</md-button>
+      </md-card-actions>
+    </md-card>
+  </md-content>
+
+  <box-footer-buttons>
+    <c2-pagination paginator="mapCtrl.paginator"></c2-pagination>
+  </box-footer-buttons>
+</box>

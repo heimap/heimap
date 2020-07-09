@@ -1,0 +1,29 @@
+<md-card style="cursor:pointer" ng-click="mapCtrl.openAddMap()" md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}"
+    md-theme-watch>
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline place-holder-text">{{::'views.titles.newMap' | translate}}</span>
+            <span class="md-subhead place-holder-text">{{::'messages.map.clickToAdd' | translate}}</span>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content layout="row" layout-align="space-between">
+        <div class="md-media-xl card-media table" style="background-color:#999999">
+            <h2 class="place-holder-text center-middle" style="font-size:80px">+</h2>
+        </div>
+        <md-card-actions layout="column">
+            <md-button disabled class="md-icon-button" aria-label="Favorite">
+                <md-icon class="">place</md-icon>
+            </md-button>
+            <md-button disabled class="md-icon-button" aria-label="Share">
+                <md-icon class="">menu</md-icon>
+            </md-button>
+            <md-button disabled class="md-icon-button" aria-label="Share">
+                <md-icon class="">favorite</md-icon>
+            </md-button>
+        </md-card-actions>
+    </md-card-content>
+    <md-card-actions layout="row" layout-align="end center">
+        <md-button disabled>{{::'views.actions.remove' | translate}}</md-button>
+        <md-button disabled>{{::'views.actions.edit' | translate}}</md-button>
+    </md-card-actions>
+</md-card>

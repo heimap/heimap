@@ -1,0 +1,71 @@
+<div ng-controller="MapBottomNavController as btmCtrl">
+  <box box-title="{{ ::'views.titles.mapList' | translate}}" toolbar-bg-color="accent">
+    <box-toolbar-buttons>
+      <md-button class="md-icon-button" ng-show="btmCtrl.showBottomNav" ng-click="btmCtrl.toggleBottom()">
+        <md-icon md-font-set="material-icons" class="md-warn">keyboard_arrow_up</md-icon>
+        <md-tooltip md-direction="bottom" hide-sm hide-xs>{{ ::'views.actions.hide' | translate}}</md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" ng-hide="btmCtrl.showBottomNav" ng-click="btmCtrl.toggleBottom()">
+        <md-icon md-font-set="material-icons" class="md-warn">keyboard_arrow_right</md-icon>
+        <md-tooltip md-direction="bottom" hide-sm hide-xs>{{ ::'views.actions.show' | translate}}</md-tooltip>
+      </md-button>
+    </box-toolbar-buttons>
+
+    <div flex ng-if="btmCtrl.showBottomNav">
+      <form class="condensed">
+        <md-input-container flex=100 flex-xs=100 class="top-0 no-btm-margin">
+          <label>{{ ::'attributes.title' | translate}}</label>
+          <input ng-change="btmCtrl.search(vm.paginator.currentPage)" type="text" ng-model="btmCtrl.queryFilters.title">
+        </md-input-container>
+        <md-input-container ng-show="btmCtrl.showFilterCheckbox">
+            <md-checkbox name="showOnlyChildMap" ng-model="btmCtrl.showOnlyChildMap" ng-change="btmCtrl.showOnlyChildMapFunc()">
+                {{ ::'attributes.showOnlyChildMap' | translate}}
+            </md-checkbox>
+        </md-input-container>
+      </form>
+
+      <md-content>
+          <!-- <md-card class="card-box mini-card" ng-repeat="resource in btmCtrl.resources" ng-show="btmCtrl.isChildMap(resource)"> -->
+        <md-card class="card-box mini-card" ng-repeat="resource in btmCtrl.resources">
+          <span class="md-headline padding-bottom-5">{{ resource.title | limitTo: 30 }}{{resource.title.length > 30 ? '...' : ''}}
+              <md-tooltip>{{resource.title}}</md-tooltip>
+          </span>
+          <md-card-content style="width:150px" layout="row" layout-align="end center" class="padding-0" ng-style="{'background-image':'url(' +resource.mapImageFile.thumb + ')'}">
+            <md-card-actions layout="column" class="margin-0 translucid-bg" layout-align="end center">
+              <md-button class="margin-0 md-icon-button no-interactive" aria-label="{{ ::'attributes.georeferenced' | translate}}">
+                <md-tooltip>{{ resource.georeferenced | isOrNotGeoreferenced}}</md-tooltip>
+                <md-icon ng-class="{'md-primary': resource.georeferenced===true}">place</md-icon>
+              </md-button>
+
+              <!-- <md-button ng-show="btmCtrl.showLoadMapInLeft" class="margin-0 md-icon-button flip-h" ng-click="btmCtrl.toggleIncludeToWorkingList(resource, 'leftMapViewer')" aria-label="{{ ::'views.actions.loadMapInLeft' | translate}}"> -->
+                <md-button ng-show="btmCtrl.showLoadMapInLeftButton(resource)" class="margin-0 md-icon-button flip-h" ng-click="btmCtrl.toggleIncludeToWorkingList(resource, 'leftMapViewer')" aria-label="{{ ::'views.actions.loadMapInLeft' | translate}}">
+                  <md-tooltip>{{ ::'views.actions.loadMapInLeft' | translate}}</md-tooltip>
+                  <md-icon ng-class="{'md-primary': btmCtrl.isLoaded(resource, 'leftMapViewer')===true}">launch</md-icon>
+                </md-button>
+
+              <!-- <md-button ng-show="btmCtrl.showLoadMapInRight" class="margin-0 md-icon-button" ng-click="btmCtrl.toggleIncludeToWorkingList(resource, 'rightMapViewer')" aria-label="{{ ::'views.actions.loadMapInRight' | translate}}"> -->
+              <md-button ng-show="btmCtrl.showLoadMapInRightButton(resource)" class="margin-0 md-icon-button" ng-click="btmCtrl.toggleIncludeToWorkingList(resource, 'rightMapViewer')" aria-label="{{ ::'views.actions.loadMapInRight' | translate}}">
+                <md-tooltip>{{ ::'views.actions.loadMapInRight' | translate}}</md-tooltip>
+                <md-icon ng-class="{'md-primary': btmCtrl.isLoaded(resource,'rightMapViewer')===true}">launch</md-icon>
+              </md-button>
+
+              <md-button class="margin-0 md-icon-button no-interactive" aria-label="{{ ::'views.actions.toggleVerified' | translate}}">
+                <md-tooltip>{{ ::'views.actions.toggleVerified' | translate}}</md-tooltip>
+                <md-icon ng-class="{'md-primary': resource.verified===true}">verified_user</md-icon>
+              </md-button>
+
+              <md-button ng-show="$state.current.name === 'app.georeference'" class="margin-0 md-icon-button" ng-click="btmCtrl.loadGcpOnMap(resource)" aria-label="{{ ::'views.actions.loadGcpOnMap' | translate}}">
+                <md-tooltip>{{ ::'views.actions.loadGcpOnMap' | translate}}</md-tooltip>
+                <md-icon ng-class="{'md-primary': btmCtrl.isNonGeorefLoaded(resource,'leftMapViewer')===true}">settings_input_svideo</md-icon>
+              </md-button>
+
+            </md-card-actions>
+          </md-card-content>
+        </md-card>
+      </md-content>
+      <box-footer-buttons class="pull-right">
+        <c2-pagination paginator="btmCtrl.paginator"></c2-pagination>
+      </box-footer-buttons>
+    </div>
+  </box>
+</div>

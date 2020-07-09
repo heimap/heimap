@@ -1,0 +1,31 @@
+<md-button ng-show="mapCtrl.showRightMapViewer === true" class="md-icon-button open-sidenav left top-240" ng-click="mapCtrl.toggleViewersCenterLink('leftMapViewer')">
+  <md-icon ng-class="{'md-primary': mapCtrl.rightCenter === mapCtrl.leftCenter}" md-font-set="material-icons">link</md-icon>
+  <md-tooltip md-z-index="1000" md-direction="right">{{ ::'views.actions.unlinkLink' | translate}}</md-tooltip>
+</md-button>
+<md-button ng-show="mapCtrl.showRightMapViewer === true" class="md-icon-button open-sidenav left top-290" ng-click="mapCtrl.hideViewer('leftMapViewer')">
+  <md-icon md-font-set="material-icons">close</md-icon>
+  <md-tooltip md-z-index="1000" md-direction="right">{{ ::'views.actions.close' | translate}}</md-tooltip>
+</md-button>
+<md-button class="md-icon-button open-sidenav left top-340" ng-click="mapCtrl.toggleWheelZoom('leftMapViewer')">
+  <md-icon ng-class="{'md-primary': mapCtrl.leftWheelZoomEnabled === true}" md-font-set="material-icons">find_replace</md-icon>
+  <md-tooltip md-z-index="1000" md-direction="right">{{ ::'views.actions.toggleWheelZoom' | translate}}</md-tooltip>
+</md-button>
+<md-button ng-show="mapCtrl.bothViewersVisible === false" class="md-icon-button open-sidenav left top-390" ng-click="mapCtrl.showBothViewers()">
+  <md-icon class="rotate90" md-font-set="material-icons">view_stream</md-icon>
+  <md-tooltip md-z-index="1000" md-direction="right">{{ ::'views.actions.split' | translate}}</md-tooltip>
+</md-button>
+
+<md-button ng-disabled="mapCtrl.toggleAddGCP() === true" ng-show="mapCtrl.showGeoRefTools === true" class="md-icon-button open-sidenav left top-440" ng-click="mapCtrl.toggleCreateMarker('leftMapViewer')">
+  <md-icon ng-class="{'md-primary': mapCtrl.leftCreateMarkerEnable === true}" md-font-set="material-icons">location_on</md-icon>
+  <md-tooltip md-z-index="1000" md-direction="right">{{ ::'views.actions.toggleMarkerCreation' | translate}}</md-tooltip>
+</md-button>
+
+<md-button ng-disabled="mapCtrl.toggleAddGCP() === true" ng-show="mapCtrl.showGeoRefTools === true" class="md-icon-button open-sidenav left top-490" ng-click="mapCtrl.toggleRemoveMarker('leftMapViewer')">
+  <md-icon ng-class="{'md-primary': mapCtrl.leftRemoveMarkerEnable === true}" md-font-set="material-icons">location_off</md-icon>
+  <md-tooltip md-z-index="1000" md-direction="right">{{ ::'views.actions.toggleMarkerRemoval' | translate}}</md-tooltip>
+</md-button>
+
+<md-button ng-show="mapCtrl.showGeoRefTools === true" class="md-icon-button open-sidenav left top-540" ng-click="mapCtrl.openSaveGeoRef()">
+  <md-icon ng-class="{'md-primary': mapCtrl.validGCP() === true}" md-font-set="material-icons">save</md-icon>
+  <md-tooltip md-z-index="1000" md-direction="right">{{ ::'views.actions.saveGeoref' | translate}}</md-tooltip>
+</md-button>

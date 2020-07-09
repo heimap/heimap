@@ -1,0 +1,74 @@
+<form ng-submit="mapCtrl.save()">
+  <section md-whiteframe="1">
+    <md-toolbar md-whiteframe="1" class="md-toolbar-h50">
+      <div class="md-toolbar-tools font-size-80">
+        <h3>{{::mapCtrl.titleTranslKey | translate}}</h3>
+        <span flex></span>
+        <div flex class="align-right">
+          <md-button ng-if="mapCtrl.supportListingView" class="md-icon-button" ng-click="mapCtrl.switchToView('list')">
+            <md-icon md-font-set="material-icons" class="md-warn">view_list</md-icon>
+            <md-tooltip md-direction="left">{{ ::'views.actions.list' | translate}}</md-tooltip>
+          </md-button>
+        </div>
+      </div>
+    </md-toolbar>
+
+    <ng-include src="mapCtrl.leftSideBar"></ng-include>
+
+    <div layout="column" flex>
+      <md-content class="padding-8" layout-xs="column">
+        <md-content layout="row">
+
+          <md-button class="md-icon-button open-sidenav left top-190" ng-click="mapCtrl.toggleLeft()">
+            <md-icon md-font-set="material-icons">keyboard_arrow_right</md-icon>
+            <md-tooltip md-z-index="1000" md-direction="right">{{ ::'views.actions.open' | translate}}</md-tooltip>
+          </md-button>
+
+          <md-button class="md-icon-button open-sidenav right top-190" ng-click="mapCtrl.toggleRight()">
+            <md-icon md-font-set="material-icons">keyboard_arrow_left</md-icon>
+            <md-tooltip md-z-index="1000" md-direction="left">{{ ::'views.actions.open' | translate}}</md-tooltip>
+          </md-button>
+
+          <md-content ng-show="mapCtrl.showLeftMapViewer" flex="mapCtrl.viewerWidth" flex-xs=50 class="top-0 border-1">
+            <leaflet
+              id="leftMapViewer"
+              event-broadcast="mapCtrl.leftViewerEvents"
+              markers="mapCtrl.leftMarkers"
+              controls="mapCtrl.leftControls"
+              flex=100
+              layers="mapCtrl.leftMapViewer"
+              lf-center="mapCtrl.leftCenter"
+              height="700px">
+            </leaflet>
+
+            <ng-include src="global.clientPath + '/shared/map-viewer/tools/left-viewer-tools.html'"></ng-include>
+
+          </md-content>
+
+          <md-content ng-show="mapCtrl.showRightMapViewer" flex="mapCtrl.viewerWidth" flex-xs=50 class="top-0 border-1">
+            <leaflet
+              id="rightMapViewer"
+              event-broadcast="mapCtrl.rightViewerEvents"
+              markers="mapCtrl.rightMarkers"
+              controls="mapCtrl.rightControls"
+              flex=100
+              layers="mapCtrl.rightMapViewer"
+              lf-center="mapCtrl.rightCenter"
+              height="700px">
+            </leaflet>
+
+            <ng-include src="global.clientPath + '/shared/map-viewer/tools/right-viewer-tools.html'"></ng-include>
+
+          </md-content>
+        </md-content>
+        <ng-include src="mapCtrl.gcpTable"></ng-include>
+      </md-content>
+      <ng-include ng-show="mapCtrl.displayBottomNav" style="margin-bottom: 15px" class="padding-8" src="global.clientPath + '/shared/map-viewer/navs/map-bottomnav.html'">
+      </ng-include>
+    </div>
+
+    <!-- <ng-include src="global.clientPath + '/shared/map-viewer/navs/map-right-sidenav.html'"></ng-include> -->
+    <ng-include src="mapCtrl.rightSideBar"></ng-include>
+
+  </section>
+</form>

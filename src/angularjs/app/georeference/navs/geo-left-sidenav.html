@@ -1,0 +1,79 @@
+<md-sidenav class="md-sidenav-left map-sidenav map-sidebar" flex md-component-id="left" md-whiteframe="4">
+  <md-toolbar class="md-toolbar-tools font-size-80">
+    <h3>{{ ::'views.titles.saveControlPoints' | translate}}</h3>
+    <span flex></span>
+    <div flex class="align-right">
+      <md-button class="md-icon-button" ng-click="mapCtrl.toggleLeft()">
+        <md-icon md-font-set="material-icons">keyboard_arrow_left</md-icon>
+        <md-tooltip md-direction="bottom">{{ ::'views.actions.close' | translate}}</md-tooltip>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding ng-controller="GeoLeftSidenavController as geoCtrl">
+    <md-input-container  ng-blur="" flex=100 flex-xs=100 class="top-0">
+      <label>{{ ::'attributes.rectifyMethod' | translate}}</label>
+
+      <md-select ng-model="geoCtrl.rectifyMethod">
+        <!-- <md-option ng-disabled="geoCtrl.rectifyDisable(rMethod.id)" ng-repeat="rMethod in geoCtrl.rectifyMethods" ng-value="rMethod"> -->
+        <md-option ng-disabled="rMethod.disable" ng-repeat="rMethod in geoCtrl.rectifyMethods" ng-value="rMethod">
+          {{rMethod.name}}
+        </md-option>
+      </md-select>
+    </md-input-container>
+
+    <md-input-container  ng-blur="" flex=100 flex-xs=100 class="top-0">
+      <label>{{ ::'attributes.resamplingMethod' | translate}}</label>
+
+      <md-select ng-model="geoCtrl.resamplingMethod" ng-change="geoCtrl.generateFilenameandExtent();">
+        <md-option ng-disabled="rsMethod.disable" ng-repeat="rsMethod in geoCtrl.resamplingMethods" ng-value="rsMethod">
+          {{rsMethod.name}}
+        </md-option>
+      </md-select>
+    </md-input-container>
+
+    <md-input-container  ng-blur="" flex=120 flex-xs=100 class="top-0">
+      <label for="txtGeoRefFilename">{{ ::'attributes.enterGeorefFileName' | translate}}</label>
+      <!-- Enter new file name. Default is follows:", layer[firstLayerKey].resource.title + "_g_" + geoRef.rectifyMethod + "_" + geoRef.resamplingMethod + "_" + ((new Date()).getMonth()+1) + "." + (new Date()).getDate() + "." + (new Date()).getFullYear()-->
+      <input type="text" ng-model="geoCtrl.geoRefFilename" id="txtGeoRefFilename" class="ng-input">
+    </md-input-container>
+
+    <!-- <md-checkbox name="manualExtent" ng-model="geoCtrl.manualExtent">
+        <label>{{ ::'attributes.cropImage' | translate}}</label>
+    </md-checkbox> -->
+    <md-radio-group ng-model="extentSelection">
+      <md-radio-button name="a" ng-value="0" aria-label="Label 1">
+        <label>{{ ::'attributes.cropImageNone' | translate}}</label>
+      </md-radio-button>  
+      <md-radio-button name="b" ng-value="1" aria-label="Label 1">
+        <label>{{ ::'attributes.cropImage' | translate}}</label>
+      </md-radio-button>
+      <md-radio-button name="c" ng-value="2" aria-label="Label 1">
+        <label>{{ ::'attributes.cropImageByDraw' | translate}}</label>
+      </md-radio-button>
+    </md-radio-group>
+    <div ng-if="extentSelection=='1'">
+    <md-input-container  ng-blur="" flex=100 flex-xs=100 class="top-0">
+      <label>{{ ::'attributes.minx' | translate}}</label>
+      <input type="number" ng-model="geoCtrl.minx" class="ng-input" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01">
+    </md-input-container>
+    <md-input-container  ng-blur="" flex=100 flex-xs=100 class="top-0">
+      <label>{{ ::'attributes.miny' | translate}}</label>
+      <input type="number" ng-model="geoCtrl.miny" class="ng-input" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01">
+    </md-input-container>
+    <md-input-container  ng-blur="" flex=100 flex-xs=100 class="top-0">
+      <label>{{ ::'attributes.maxx' | translate}}</label>
+      <input type="number" ng-model="geoCtrl.maxx" class="ng-input" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01">
+    </md-input-container>
+    <md-input-container  ng-blur="" flex=100 flex-xs=100 class="top-0">
+      <label>{{ ::'attributes.maxy' | translate}}</label>
+      <input type="number" ng-model="geoCtrl.maxy" class="ng-input" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01">
+    </md-input-container>
+  </div>
+    <md-button  class="md-primary md-raised" ng-click="geoCtrl.previewGcp()">
+      {{ ::'attributes.previewGCP' | translate}}
+    </md-button>
+    <md-button  class="md-primary md-raised" ng-click="geoCtrl.save()">
+        {{::'views.actions.save' | translate}}
+    </md-button>
+  </md-content>
+</md-sidenav>

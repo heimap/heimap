@@ -1,0 +1,100 @@
+<md-dialog flex=100 flex-gt-md=40 aria-label="{{ctrl.viewTitle}}" class="md-dialog-transparent">
+    <content-body flex>
+        <box box-title="{{ctrl.viewTitle}}" flex>
+            <md-input-container class="md-block" flex>
+                <label>{{ ::'attributes.mapType' | translate}}</label>
+                <md-select required ng-model="ctrl.resource.mapType">
+                    <md-option>
+                        <em>{{::'views.layout.input.select' | translate}}</em>
+                    </md-option>
+                    <md-option ng-repeat="type in ctrl.mapTypes" ng-value="type">
+                        {{type.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex>
+                <input required type="text" placeholder="{{ ::'attributes.title' | translate}}" ng-model="ctrl.resource.title">
+            </md-input-container>
+            <md-input-container class="md-block" flex ng-if="ctrl.resource.mapImageFile.id">
+                <img data-ng-src="{{ctrl.resource.mapImageFile.thumb}}" alt="{{ctrl.resource.mapImageFile.name}}" />
+            </md-input-container>
+
+            <md-input-container class="md-block" flex ng-if="ctrl.resource.mapImageFile.id">
+                <input disabled type="text" ng-model="ctrl.resource.mapImageFile.name">
+            </md-input-container>
+            <md-input-container class="md-block" flex ng-if="!ctrl.resource.mapImageFile.id">
+                <lf-ng-md-file-input required lf-files='ctrl.imageFile' lf-mimetype="image/*" lf-placeholder="{{:: 'messages.map.selectAMap' | translate}}" lf-drag-and-drop-label="{{:: 'messages.map.dropMap' | translate}}"
+                    ng-change="ctrl.onImageFileChange()" progress>
+                </lf-ng-md-file-input>
+            </md-input-container>
+
+            <!-- <md-input-container ng-if="ctrl.showProjectionInput()" class="md-block" flex>
+                <md-input-container class="md-block" flex>
+                    <label>{{ ::'attributes.projection' | translate}}</label>
+                    <md-select  ng-model="ctrl.resource.projection">
+                        <md-option>
+                            <em>{{::'views.layout.input.select' | translate}}</em>
+                        </md-option>
+                        <md-option ng-repeat="projection in ctrl.projections" ng-value="projection">
+                            {{projection.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <lf-ng-md-file-input ng-if="ctrl.showGeoFileInput()" lf-files='ctrl.geoFile' lf-mimetype="application/*,text/*" lf-placeholder="{{:: 'messages.map.selectAGeoFile' | translate}}"
+                    ng-change="ctrl.onGeoFileChange()" progress>
+                </lf-ng-md-file-input>
+            </md-input-container> -->
+            <!-- <md-input-container class="md-block" flex>
+                <md-switch aria-label="{{ ::'views.actions.toggleVerified' | translate}}" class="top-5" ng-model="ctrl.resource.verified">
+                {{ ::'views.actions.toggleVerified' | translate}}
+                </md-switch>
+            </md-input-container> -->
+            <md-chips ng-show="ctrl.showGeorefBadge()">
+                <md-chip ng-show=ctrl.resource.georeferenced>File is Georeferenced</md-chip>
+                <md-chip ng-hide=ctrl.resource.georeferenced>File is Not Georeferenced</md-chip>
+            </md-chips>
+            
+
+            <div layout="row" ng-if="ctrl.resource.mapGeoFile.id">
+                <md-input-container flex="80" class="md-block" flex>
+                    <input disabled type="text" ng-model="ctrl.resource.mapGeoFile.name">
+                </md-input-container>
+            </div>
+            <div layout="row" ng-if="ctrl.mode === 'edit'">
+                <md-button layout="column" class="md-icon-button" aria-label="{{ ::'attributes.georeferenced' | translate}}">
+                    <md-tooltip class="tooltip">{{ ctrl.resource.georeferenced | isOrNotGeoreferenced}}</md-tooltip>
+                    <md-icon ng-class="{'md-primary': ctrl.resource.georeferenced==true}">place</md-icon>
+                </md-button>
+                <md-button layout="column" class="md-icon-button" aria-label="{{ ::'attributes.mapOptions' | translate}">
+                    <md-tooltip>{{ ::'attributes.mapOptions' | translate}}</md-tooltip>
+                    <md-icon class="">menu</md-icon>
+                </md-button>
+                <md-button layout="column" class="md-icon-button" aria-label="{{ ::'views.actions.toggleFavorite' | translate}">
+                    <md-tooltip>{{ ::'views.actions.toggleFavorite' | translate}}</md-tooltip>
+                    <md-icon class="">favorite</md-icon>
+                </md-button>
+            </div>
+
+            <box-footer-buttons>
+                <div layout="row">
+                    <div>
+                        <md-button class="md-primary md-raised" ng-if="ctrl.mode === 'edit'" ng-click="ctrl.remove(resource)">
+                            {{::'views.actions.remove' | translate}}
+                        </md-button>
+                    </div>
+                    <div>
+                        <md-button  ng-if="!ctrl.saving" class="md-primary md-raised" ng-click="ctrl.save()">
+                            {{::'views.actions.save' | translate}}
+                        </md-button>
+                        <md-progress-circular md-diameter="35" ng-if="ctrl.saving" md-mode="indeterminate"></md-progress-circular>
+                    </div>
+                    <div>
+                        <md-button class="md-warn" ng-click="ctrl.close()">{{::'views.actions.getOut' | translate}}</md-button>
+                    </div>
+                </div>
+            </box-footer-buttons>
+        </box>
+
+    </content-body>
+</md-dialog>

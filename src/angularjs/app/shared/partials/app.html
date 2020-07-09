@@ -1,0 +1,13 @@
+<div layout="row" class="full-height" ng-controller="MenuController as menuCtrl" ng-cloak>
+    <ng-include src="global.clientPath + '/shared/partials/header.html'" ></ng-include>
+    <div layout="column" flex class="full-height">
+        <ng-include src="global.clientPath + '/shared/partials/menu.html'" ></ng-include>
+        <md-content layout="column" flex md-scroll-y>
+            <!-- This is the div in which ui-router add the page content using the directive ui-view -->
+            <div flex="noshrink" ui-view></div>
+        </md-content>
+
+        <!-- Footer -->
+        <ng-include src="global.clientPath + '/shared/partials/footer.html'"></ng-include>
+    </div>
+</div>

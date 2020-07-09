@@ -1,0 +1,17 @@
+<md-sidenav class="md-sidenav-left map-sidenav map-sidebar" flex md-component-id="left" md-whiteframe="4">
+    <md-toolbar class="md-toolbar-tools font-size-80">
+        <h3>{{ ::'views.titles.mapElements' | translate}}</h3>
+        <span flex></span>
+        <div flex class="align-right">
+            <md-button class="md-icon-button" ng-click="mapCtrl.toggleLeft()">
+                <md-icon md-font-set="material-icons">keyboard_arrow_left</md-icon>
+                <md-tooltip md-direction="bottom">{{ ::'views.actions.close' | translate}}</md-tooltip>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content layout-padding ng-controller="MapLeftSidenavController">
+        <p hide show-gt-md>
+            Here will come the toools to create/edit map elements, like polygons, lines etc.
+        </p>
+    </md-content>
+</md-sidenav>

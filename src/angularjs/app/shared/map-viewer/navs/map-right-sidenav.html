@@ -1,0 +1,74 @@
+<md-sidenav class="md-sidenav-right map-sidenav map-sidebar" md-component-id="right">
+  <md-toolbar class="md-toolbar-tools font-size-80">
+    <div flex class="align-left">
+      <md-button class="md-icon-button" ng-click="mapCtrl.toggleRight()">
+        <md-icon md-font-set="material-icons">keyboard_arrow_right</md-icon>
+        <md-tooltip md-direction="bottom">{{ ::'views.actions.close' | translate}}</md-tooltip>
+      </md-button>
+    </div>
+    <h1 class="md-toolbar-tools">{{ ::'views.titles.mapLayers' | translate}}</h1>
+  </md-toolbar>
+  <md-content ng-controller="MapRightSidenavController as mapRightCtrl" layout-padding>
+    <form>
+      <md-input-container class="margin-10 padding-0">
+        <label for="filterMapLayersTxt">{{ ::'views.actions.filterMaps' | translate}}</label>
+        <input type="text" id="filterMapLayersTxt" ng-change="mapRightCtrl.filterMapLayers()" ng-model="mapRightCtrl.filterMapLayersTxt"
+          md-autofocus>
+      </md-input-container>
+    </form>
+    <div id="sortable-loaded-maps" ng-sortable="mapRightCtrl.sortableConf" class="margin-0 padding-0 list-group">
+        <md-card class="card-box" ng-repeat="layer in mapRightCtrl.loadedMapsLayers track by $index">
+          <md-card-title style="padding: 5px 0 5px 5px;">
+            <md-card-title-text>
+              <span class="md-headline"><md-tooltip>{{ layer.resource.title }}</md-tooltip>
+                {{ layer.resource.title | limitTo: 12 }}{{layer.resource.title.length > 12 ? '...' : ''}}
+              </span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content layout="row" class="padding-0" layout-align="end center" style="height:170px" ng-style="{'background-image': 'url(' +layer.resource.mapImageFile.thumb + ')' }">
+            <md-card-actions layout="column" class="margin-0 translucid-bg" layout-align="end center">
+              <md-button class="margin-0 md-icon-button" ng-click="mapRightCtrl.showMap(layer)" ng-hide="layer.visible === true" aria-label="{{ ::'views.actions.hideMapLayer' | translate}}">
+                <md-tooltip>{{ ::'views.actions.hideMapLayer' | translate}}</md-tooltip>
+                <md-icon>visibility</md-icon>
+              </md-button>
+              <md-button class="margin-0 md-icon-button" ng-click="mapRightCtrl.hideMap(layer)" ng-show="layer.visible === true" aria-label="{{ ::'views.actions.showMapLayer' | translate}}">
+                <md-tooltip>{{ ::'views.actions.showMapLayer' | translate}}</md-tooltip>
+                <md-icon class="md-primary">visibility</md-icon>
+              </md-button>
+              <md-button class="margin-0 md-icon-button" ng-click="mapRightCtrl.removeMap(layer)" aria-label="{{ ::'views.actions.removeMapLayer' | translate}}">
+                <md-tooltip>{{ ::'views.actions.removeMapLayer' | translate}}</md-tooltip>
+                <md-icon>delete</md-icon>
+              </md-button>
+              <md-button class="margin-0 md-icon-button" ng-click="mapRightCtrl.fitMapBounds(layer)" aria-label="{{ ::'views.actions.zoomToMap' | translate}}">
+                <md-tooltip>{{ ::'views.actions.zoomToMap' | translate}}</md-tooltip>
+                <md-icon>filter_center_focus</md-icon>
+              </md-button>
+
+              <md-button ng-if="layer.viewerId === 'leftMapViewer'" class="margin-0 md-icon-button flip-h" aria-label="{{::'views.actions.loadedInLeftViewer' | translate}}">
+                <md-tooltip>{{ ::'views.actions.loadedInLeftViewer' | translate}}</md-tooltip>
+                <md-icon class="md-primary">launch</md-icon>
+              </md-button>
+              <md-button ng-if="layer.viewerId === 'rightMapViewer'" class="margin-0 md-icon-button" aria-label="{{ ::'views.actions.loadedInRightViewer' | translate}}">
+                <md-tooltip>{{ ::'views.actions.loadedInRightViewer' | translate}}</md-tooltip>
+                <md-icon class="md-primary">launch</md-icon>
+              </md-button>
+              <md-button class="margin-0 md-icon-button grab-handle" style="cursor:row-resize">
+                <md-icon class="md-primary">drag_handle</md-icon>
+              </md-button>
+
+            </md-card-actions>
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="end center" style="margin-top:0">
+            <div layout="row">
+              <h5>{{ ::'views.fields.opacity' | translate}}</h5>
+            </div>
+            <md-slider-container>
+              <md-slider step="0.1" min="0.1" max="1" ng-change="mapRightCtrl.applyOpacity(layer)" flex ng-model="layer.layerParams.opacity"
+                aria-label="{{ ::'views.fields.opacity' | translate}}"> </md-slider>
+            </md-slider-container>
+          </md-card-actions>
+        </md-card>
+    </div>
+
+  </md-content>
+</md-sidenav>

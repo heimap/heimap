@@ -1,0 +1,14 @@
+<div layout="row" layout-align="center center">
+  <md-content layout "row">
+    <md-nav-bar md-selected-nav-item="menuCtrl.currentNavItem" layout-align="center center" nav-bar-aria-label="navigation links">
+      <md-nav-item md-nav-click="menuCtrl.redirectToDashboard()" name="app.dashboard">{{::'views.layout.menu.dashboard' | translate}}</md-nav-item>
+      <md-nav-item md-nav-sref="app.map" name="app.map">{{::'views.layout.menu.map' | translate}}</md-nav-item>
+      <md-nav-item md-nav-sref="app.georeference" name="app.georeference">{{::'views.layout.menu.georeference' | translate}}</md-nav-item>
+      <md-nav-item md-nav-sref="app.vector" name="app.vector">{{::'views.layout.menu.vector' | translate}}</md-nav-item>
+      <md-nav-item md-nav-click="menuCtrl.redirectToDiscussion()">{{::'views.layout.menu.discussion' | translate}}</md-nav-item>
+      <!-- <md-nav-item md-nav-sref="app.export" name="app.export">{{::'views.layout.menu.export' | translate}}</md-nav-item>
+      <md-nav-item md-nav-sref="app.import" name="app.import">{{::'views.layout.menu.import' | translate}}</md-nav-item>  
+      <md-nav-item md-nav-sref="app.preferences" name="app.preferences">{{::'views.layout.menu.preferences' | translate}}</md-nav-item>  -->
+    </md-nav-bar>
+  </md-content>
+</div>

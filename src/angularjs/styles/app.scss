@@ -1,0 +1,501 @@
+@import "node_modules/angular-material/angular-material.scss";
+
+$alignList: left, right, center, bottom, top, middle;
+
+html,
+body {
+  background-color: #FAFAFA;
+  height: 100% !important;
+  min-height: 100% !important;
+}
+
+.pull-left {
+  float: left !important;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-left {
+  text-align: left;
+}
+
+#toast-container> div {
+  opacity: 1;
+}
+
+.place-holder-text{
+  color: rgba(0, 0, 0, 0.26);
+}
+.table{
+   display: table;
+}
+
+.center-middle {
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
+}
+
+.map-sidebar{
+  max-height: 769px;
+  margin-top: 20px;
+}
+
+// To show a md select pop up inside a sidnav over a leaflet map
+// we need to change the default z-index
+.md-select-menu-container{
+  z-index: 10003;
+}
+
+// changed the value since clicking outside on the form drop down was not closing 
+md-backdrop.md-select-backdrop {
+  //z-index: 899;
+  z-index: 10003;
+}
+
+
+md-toolbar {
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 2px rgba(255, 255, 255, 0.1);
+}
+
+md-toolbar.no-radius {
+  border-radius: 0px !important;
+}
+
+.flip-h{
+  transform: scaleX(-1);
+}
+
+.md-dialog-container {
+  z-index: 10000;
+}
+
+.md-toolbar-tools {
+  padding-right: 0px !important;
+}
+
+.translucid-bg {
+  background:rgba(248, 248, 248, 0.5);
+}
+
+#sortable-loaded-maps md-card-actions .md-button {
+  height: 30px;
+}
+
+#sortable-loaded-maps md-card-actions .md-button md-icon {
+  font-size: 24px;
+}
+
+.rotate90 {
+  -webkit-transform: rotate(90deg); /* Safari and Chrome */
+  -moz-transform: rotate(90deg);   /* Firefox */
+  -ms-transform: rotate(90deg);   /* IE 9 */
+  -o-transform: rotate(90deg);   /* Opera */
+  transform: rotate(90deg);
+}
+
+@for $i from 1 through 5 {
+  md-toolbar.md-toolbar-h#{$i * 10} {
+    min-height: 10px * $i;
+    height: 10px * $i;
+  }
+}
+
+@for $i from 0 through 50 {
+  .margin-#{$i} { margin: 1px * $i !important; }
+}
+
+@for $i from 1 through 30 {
+  .border-#{$i} { border: 1px * $i  solid grey !important; }
+}
+
+@for $i from 1 through 550 {
+  .top-#{$i} { margin-top: 1px * $i !important; }
+}
+
+@for $i from 1 through 30 {
+  .bottom-#{$i} { margin-bottom: 1px * $i !important; }
+}
+
+@for $i from 1 through 30 {
+  .padding-#{$i} { padding: 1px * $i; }
+}
+
+@for $i from 1 through 30 {
+  .padding-left-#{$i} { padding-left: 1px * $i; }
+}
+
+@for $i from 1 through 30 {
+  .padding-right-#{$i} { padding-right: 1px * $i !important; }
+}
+
+@for $i from 1 through 30 {
+  .padding-bottom-#{$i} { padding-bottom: 1px * $i !important; }
+}
+
+@for $i from 1 through 30 {
+  .padding-top-#{$i} { padding-top: 1px * $i; }
+}
+
+@for $i from 1 through 100 {
+  .font-size-#{$i} { font-size: 1% * $i !important; }
+}
+
+form.condensed {
+  margin: 2px 0 !important;
+  padding: 4px 0 0 0 !important;
+}
+
+form.condensed md-input-container {
+  margin: 0px;
+}
+
+form.condensed mdp-date-picker .md-button.md-icon-button, form.condensed mdp-time-picker .md-button.md-icon-button {
+  margin: 0px !important;
+}
+
+table.condensed .md-row {
+  height: 28px !important;
+}
+table.condensed .md-column {
+  padding: 0 12px !important;
+}
+table.condensed .md-cell {
+  padding: 0 10px !important;
+}
+
+.md-button.md-mini {
+  line-height: 20px;
+  min-width: 30px;
+  min-height: 24px;
+  font-size: 12px;
+}
+
+.md-buttom-menu{
+  margin: 0 !important;
+  margin-bottom: 0px !important;
+  text-align: inherit;
+  width: 100%;
+}
+
+.md-buttom-menu span{
+  margin-left: 10px !important;
+}
+
+.md-button.md-micro {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  min-height: 20px;
+  vertical-align: top;
+  font-size: 10px;
+  padding: 0 0;
+  margin: 0;
+}
+
+.md-button-floating {
+  position: absolute;
+  right: 35px;
+  top: 47px;
+}
+
+.no-interactive{
+  cursor: default;
+}
+
+.md-text-center {
+  text-align: center !important;
+}
+
+.menu-icon {
+  margin-top: 7px !important;
+}
+
+@media only screen and (min-width: 240px) {
+  .md-breadcrumb {
+    font-size: 53% !important;
+    font-weight: 400 !important;
+    line-height: 140% !important;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .md-breadcrumb {
+    font-size: 100% !important;
+    font-weight: 400 !important;
+  }
+}
+
+.menu-sidenav, .menu-sidenav ul {
+  list-style: none;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.menu-sidenav li {
+  padding: 0;
+  margin-top: 3px;
+}
+
+.menu-sidenav> li {
+  border-bottom: 1px solid #FFFFFF;
+}
+
+.md-block {
+  width: 100%;
+}
+
+.md-default {
+  background-color: #31B0D5 !important;
+  color: #fff !important;
+}
+
+/* https://google.github.io/material-design-icons/#using-the-icons-in-html */
+
+.material-icons.md-dark {
+  color: #000000 !important;
+}
+
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+@for $i from 1 through 4 {
+  .material-icons.md-#{$i * 12} { font-size: 12px * $i; }
+}
+
+.nav-header {
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.logo {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0 16px;
+  margin: 0 auto;
+}
+
+.logo span {
+  width: 100%;
+  font-size: 80%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.logo span.email {
+  padding: 0px !important;
+}
+
+a.logo {
+  text-decoration: none;
+  color: #fff;
+}
+
+.full-height {
+  height: 100% !important;
+  min-height: 100% !important;
+}
+
+.site-sidenav,
+.site-sidenav.md-locked-open-add-active,
+.site-sidenav.md-locked-open {
+  width: 272px;
+  min-width: 272px;
+  max-width: 272px;
+}
+
+.site-sidenav md-content {
+  background: transparent;
+}
+
+.site-sidenav> * {
+  min-width: 218px;
+}
+
+.site-content-toolbar {
+  background: #f6f6f6 !important;
+  color: #202020 !important;
+  z-index: 3;
+}
+
+.md-whiteframe-glow-z1 {
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
+}
+
+#license-footer {
+  align-self: flex-end;
+  padding: 16px 32px;
+  width: 100%;
+  text-align: center;
+  font-size: small;
+  border-top: 1px solid #ddd;
+}
+
+.md-dialog-transparent {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+@each $align in $alignList {
+  .md-text-#{$align} {
+    text-align: #{$align} !important;
+  }
+}
+
+.prContactChips md-content.autocomplete input {
+  min-width: 400px;
+}
+
+.prContactChips md-content.autocomplete {
+  margin: 0px 8px;
+}
+
+/* Map view */
+.md-sidenav-backdrop {
+  z-index: 10000 !important;
+}
+
+.map-sidenav {
+  z-index: 10002;
+}
+
+.open-sidenav{
+  position: absolute;  
+  background-color: white;
+  top: 111px;
+  z-index: 10001;
+  border-radius: 10% !important;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+}
+
+.open-sidenav:hover{  
+  background-color: white !important;  
+}
+
+.left{
+  left: 0px;
+}
+
+.right{
+  right: 0px;
+}
+
+.map-sidenav .md-toolbar-tools {
+  height: 50px !important;
+  min-height: 50px !important;
+}
+
+/* End map view */
+
+/* MD cards */
+.card-box{ 
+  float: left;  
+  position: relative;
+  padding: 0px;
+}
+
+.card-box md-card-content{ 
+  padding: 14px;
+}
+
+.card-box:hover {
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+}
+
+.md-media-md.card-media{
+  width: 112px;
+  height: 112px;
+}
+.mini-card {
+  max-width: 140px;
+  padding: 5px;
+  max-height: 165px;
+  overflow: hidden;
+}
+
+.mini-card md-card-content {
+  overflow: hidden
+}
+
+.mini-card md-card-content md-card-actions button {
+  height: 26px !important;
+}
+
+.mini-card md-card-content md-card-actions button md-icon {
+  font-size: 20px;
+}
+
+.mini-card .md-headline {
+  font-size: 14px !important;
+  word-wrap: break-word;
+  word-break: break-all;
+  line-height: 14px;
+}
+/* End MD cards */
+
+md-input-container.no-btm-margin{
+  margin-bottom: 0px !important;
+}
+
+/* marker */
+
+.mk-div-icon {  
+  margin-left:-26px;
+  margin-top: -50px;
+}
+
+.mk-icon-container {
+  display: block;
+  width: 56px;
+  background-color: red;
+  height: 50px;
+  text-align: center;
+  padding-top: 10px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.mk-icon-container.mk-error {
+  color: #fff;
+  background: url('data:image/svg+xml;utf8,<svg enable-background="new 0 0 32 32" height="32px" id="mk-icon" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="pin_1_"><path d="M26.48,13.794c0-5.789-4.692-10.481-10.48-10.481c-5.789,0-10.481,4.692-10.481,10.481   c0,1.036,0.153,2.036,0.433,2.983c1.492,6.035,10.095,12.785,10.095,12.785s9.719-7.621,10.291-13.91l-0.025-0.005" fill="red"/></g></svg>');
+  background-size: 57px 56px;
+  background-repeat: no-repeat;
+}
+
+.mk-icon-container.mk-warn {
+  color: rgb(131, 120, 36);
+  background: url('data:image/svg+xml;utf8,<svg enable-background="new 0 0 32 32" height="32px" id="mk-icon" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="pin_1_"><path d="M26.48,13.794c0-5.789-4.692-10.481-10.48-10.481c-5.789,0-10.481,4.692-10.481,10.481   c0,1.036,0.153,2.036,0.433,2.983c1.492,6.035,10.095,12.785,10.095,12.785s9.719-7.621,10.291-13.91l-0.025-0.005" fill="#000"/></g></svg>');
+  background-size: 57px 56px;
+  background-repeat: no-repeat;
+}
+
+.mk-icon-container.mk-ok {
+  color: #fff;
+  background: url('data:image/svg+xml;utf8,<svg enable-background="new 0 0 32 32" height="32px" id="mk-icon" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="pin_1_"><path d="M26.48,13.794c0-5.789-4.692-10.481-10.48-10.481c-5.789,0-10.481,4.692-10.481,10.481   c0,1.036,0.153,2.036,0.433,2.983c1.492,6.035,10.095,12.785,10.095,12.785s9.719-7.621,10.291-13.91l-0.025-0.005" fill="rgb(25,118,210)"/></g></svg>');
+  background-size: 57px 56px;
+  background-repeat: no-repeat;
+}
+
+.md-nav-item:hover {
+  background: #DCDCDC; }
+
+
+
+
+
+
+
+
+
+
+

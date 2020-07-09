@@ -1,0 +1,42 @@
+<div ng-controller="VectorLeftSidenavController as vectLayerCtrl">
+<md-sidenav class="md-sidenav-left map-sidenav map-sidebar" flex md-component-id="left" md-whiteframe="4">
+  <md-toolbar class="md-toolbar-tools font-size-80">
+    <h2>{{ ::'views.titles.layerList' | translate}}</h2>
+    <md-button class="md-icon-button" ng-click="vectLayerCtrl.createLayer()" ng-if="vectLayerCtrl.userAllow('layerCreate')">
+      <md-icon md-font-set="material-icons" aria-label="Add Layer">library_add</md-icon>
+      <md-tooltip md-direction="bottom">{{ ::'views.actions.close' | translate}}</md-tooltip>
+    </md-button>
+    <span flex></span>
+    <div flex class="align-right">
+      <md-button class="md-icon-button" ng-click="vectLayerCtrl.toggleLeft()">
+        <md-icon md-font-set="material-icons">keyboard_arrow_left</md-icon>
+        <md-tooltip md-direction="bottom">{{ ::'views.actions.close' | translate}}</md-tooltip>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding>
+    <md-list>
+      <!-- <md-subheader class="md-no-sticky">{{ ::'views.titles.layerList' | translate}}</md-subheader> -->
+      <!-- class="noright" -->
+      <md-list-item ng-repeat="layer in vectLayerCtrl.leafletLayers" ng-click="vectLayerCtrl.layerClicked(layer, $event)" class="md-2-line">
+        <!-- <p>{{ layer.options.typeName | limitTo: 10 }}{{layer.options.typeName.length > 10 ? '...' : ''}}</p> -->
+        <div class="md-list-item-text">
+          <h3>{{ layer.title | limitTo: 10 }}{{layer.title.length > 10 ? '...' : ''}}</h3>
+          <p>{{ layer.desc | limitTo: 30 }}{{layer.title.length > 30 ? '...' : ''}}</p>
+        </div>
+        <md-checkbox class="md-secondary" ng-model="layer.visible" ng-click="vectLayerCtrl.layerVisibility(layer)"></md-checkbox>
+        <md-icon ng-click="vectLayerCtrl.activateFeatureEdit(layer, $event)" aria-label="Edit" class="md-secondary md-hue-3" md-font-set="material-icons" ng-if="vectLayerCtrl.userAllow('featureEdit')">edit</md-icon>
+        <md-icon ng-click="vectLayerCtrl.deleteLayer(layer, $event)" md-font-set="material-icons" class="md-secondary" aria-label="Delete" ng-if="vectLayerCtrl.userAllow('layerDelete')">delete</md-icon>
+        <md-icon ng-click="vectLayerCtrl.exportLayer(layer, $event)" md-font-set="material-icons" class="md-secondary" aria-label="Download" ng-if="vectLayerCtrl.userAllow('layerExport')">save_alt</md-icon>
+      </md-list-item>
+    </md-list>
+    <!-- <md-button  class="md-primary md-raised" ng-click="vectLayerCtrl.createLayer()">
+      {{::'views.actions.createlayer' | translate}}
+    </md-button> -->
+    <md-button  class="md-primary md-raised" ng-click="vectLayerCtrl.save()" ng-if="vectLayerCtrl.userAllow('publishData')">
+      {{::'views.actions.publish' | translate}}
+      <md-icon md-font-set="material-icons">cloud_upload</md-icon>
+    </md-button>
+  </md-content>
+</md-sidenav>
+</div>

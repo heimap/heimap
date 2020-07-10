@@ -18,5 +18,6 @@ This repository contains source modules of the Application
 
 <hr>  
 
-Further information can be found on the [project website](https://heimap.uni-heidelberg.de).
+Further information can be found on the [project website](https://heimap.uni-heidelberg.de).  
+
 heiMAP was funded by the Ministry of Science, Research and the Arts of Baden-Württemberg.
